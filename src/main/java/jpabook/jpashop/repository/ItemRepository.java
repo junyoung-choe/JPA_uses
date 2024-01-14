@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jpabook.jpashop.domain.Item.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class ItemRepository {
             em.merge(item);
         }
     }
+
 
     public Item findOne(Long id) {
         return em.find(Item.class, id);

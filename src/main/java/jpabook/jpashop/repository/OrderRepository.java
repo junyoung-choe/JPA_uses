@@ -6,6 +6,7 @@ import jakarta.persistence.criteria.*;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.hibernate.sql.ast.tree.predicate.Predicate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;

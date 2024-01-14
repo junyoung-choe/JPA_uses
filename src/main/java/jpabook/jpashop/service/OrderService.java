@@ -8,9 +8,12 @@ import jpabook.jpashop.domain.OrderItem;
 import jpabook.jpashop.repository.ItemRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.repository.OrderRepository;
+import jpabook.jpashop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -24,6 +27,8 @@ public class OrderService {
     /**
      * 주문
      */
+    // 이것도 보면 member 자체를 받아오는게 아니라 memberId 만 받아와서 더티체킹으로 업데이트 하는것이다
+    // 여기서 member 자체를 받아오면 걔는 준영속 상태이다 즉 JPA 관리를 받지 않는다
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
 
@@ -63,10 +68,10 @@ public class OrderService {
         // 엄청난 장점 !
     }
 
-    /*
+
     // 검색
     public List<Order> findOrders(OrderSearch orderSearch) {
-          return orderRepository.findAll(orderSearch);
+          return orderRepository.findAllByString(orderSearch);
      }
-    */
+
 }
