@@ -21,8 +21,8 @@ public abstract class Item {
     private Long id;
 
     private String name;
-    private Integer price;
-    private Integer stockQuantity;
+    private int price;
+    private int stockQuantity;
 
     @OneToMany(mappedBy = "items")
     private List<Category> categoties = new ArrayList<Category>();
