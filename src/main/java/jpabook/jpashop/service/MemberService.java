@@ -48,4 +48,13 @@ public class MemberService {
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
     }
+
+    /**
+     * 회원 수정 */
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        member.setName(name);
+        // 스프링 AOP 로 스프링의 트랜잭션이 끝나는 시점에 더티 감지를 통해서 update 된다 !
+    }
 }
