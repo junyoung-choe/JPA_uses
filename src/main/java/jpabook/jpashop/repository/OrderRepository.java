@@ -63,7 +63,7 @@ public class OrderRepository {
     }
 
 
-//    public List<Order> findAllByCriteria(OrderSearch orderSearch) {
+    //    public List<Order> findAllByCriteria(OrderSearch orderSearch) {
 //        CriteriaBuilder cb = em.getCriteriaBuilder();
 //        CriteriaQuery<Order> cq = cb.createQuery(Order.class);
 //        Root<Order> o = cq.from(Order.class);
@@ -86,4 +86,11 @@ public class OrderRepository {
 //        TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000); //최대 1000 건
 //        return query.getResultList();
 //    }
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(
+                        "select o from Order o" +
+                                " join fetch o.member m" +
+                                " join fetch o.delivery d", Order.class)
+                .getResultList();
+    }
 }

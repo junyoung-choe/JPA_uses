@@ -32,6 +32,8 @@ dependencies {
 
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0' // SQL ? 부분 다 보여준다 !
 
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta' // JSON 으로 프록시 객체 보낼때 에러를 잡는다 !
+
 	testImplementation 'junit:junit:4.13.1'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
