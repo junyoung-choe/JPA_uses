@@ -91,6 +91,17 @@ public class OrderApiController {
         return result;
     }
 
+    // OSIV -> DB 커넥션 관련 ! JPA 는 DB 커넥션을 트랜잭션의 시작과 view 랜더링 사이에 커넥션을 가지고 있다 !
+    // 하지만 로직이 길다면 커넥션을 오랬동안 가지고 있는 문제 !
+    // 트랜잭션 끝날때 반납하는 설정으로 이 문제 해결 !
+    // -> but DB 커넥션이 없어졌고 영속성 컨텍스트도 없는 상태에서(트랜잭션 끝남) controller 에서 getDelivery 호출하면 에러 발생
+    // 따라서 해결방법
+    // 1 . 패치 조인으로 다 가져오기 ! (but 필요 없을때도 패치 조인으로 다 가져오면 안됨)
+    // 2 . 따라서 Service 단계에 프록시 초기화 아예 해버려서 가져오는 로직 추가
+    //
+    // 외부 API 사용이 많다면 DB 반납하는 옵션 넣는게 좋고
+    // 아니라면 그냥 사용해도 괜찮다 !
+
     @Data
     static class OrderDto {
         private Long orderId;
